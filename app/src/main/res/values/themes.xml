@@ -3,13 +3,12 @@
     <style name="Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Status bar and Navigation bar -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
-
+        <item name="android:navigationBarColor">#00000000</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Color scheme -->
-        <item name="colorPrimary">@color/md_theme_light_primary</item>
-        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
-        <item name="colorSurface">@color/md_theme_light_surface</item>
-        <item name="colorOnBackground">@color/md_theme_light_background</item>
+        <item name="colorPrimary">@color/notmaterial_purple</item>
+        <item name="colorOnPrimary">@color/notmaterial_lightpurple</item>
+        <item name="colorSurface">@color/notmaterial_white</item>
+        <item name="colorOnBackground">@color/notmaterial_secondary</item>
     </style>
 </resources>

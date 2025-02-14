@@ -5,10 +5,14 @@
     <color name="md_theme_light_onPrimary">@color/material_dynamic_primary80</color>
     <color name="md_theme_light_surface">@color/material_dynamic_neutral99</color>
     <color name="md_theme_light_background">@color/material_dynamic_neutral99</color>
-
     <!-- Dark Theme -->
     <color name="md_theme_dark_primary">@color/material_dynamic_primary80</color>
     <color name="md_theme_dark_onPrimary">@color/material_dynamic_primary20</color>
     <color name="md_theme_dark_surface">@color/material_dynamic_neutral10</color>
     <color name="md_theme_dark_background">@color/material_dynamic_neutral10</color>
+<!--    og-->
+    <color name="notmaterial_purple">#493D9E</color>
+    <color name="notmaterial_lightpurple">#B2A5FF</color>
+    <color name="notmaterial_white">#DAD2FF</color>
+    <color name="notmaterial_secondary">#FFF2AF</color>
 </resources>
