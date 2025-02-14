@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_dynamic_primary90"
+    android:background="?attr/colorPrimary"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Ratio Sort"
             android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge"
-            android:textColor="@color/material_dynamic_primary40"
+            android:textColor="?attr/colorSurface"
             android:textStyle="bold"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="13dp" />
@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="80dp"
-        app:cardBackgroundColor="@color/material_dynamic_primary99"
+        app:cardBackgroundColor="?attr/colorSurface"
         app:cardElevation="0dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.App.TopRoundedCorners"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,11 +50,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:text="Select Media Files"
-                android:textColor="@color/material_dynamic_primary40"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:icon="@drawable/ic_add_photo_alternate"
-                app:iconTint="@color/material_dynamic_primary40"
-                app:strokeColor="@color/material_dynamic_primary40"
-                app:rippleColor="@color/material_dynamic_primary90"
+                app:iconTint="?attr/colorPrimary"
+                app:strokeColor="?attr/colorPrimary"
+                app:rippleColor="?attr/colorPrimaryContainer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -77,25 +77,26 @@
                 android:layout_marginBottom="8dp"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
-                android:textColor="@color/material_dynamic_primary40"
+                android:textColor="?attr/colorPrimary"
                 app:layout_constraintBottom_toTopOf="@id/sortButton" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/sortButton"
                 style="@style/Widget.Material3.Button"
-                android:layout_width="186dp"
-                android:layout_height="54dp"
+                android:layout_width="273dp"
+                android:layout_height="66dp"
                 android:layout_margin="16dp"
-                android:backgroundTint="@color/material_dynamic_primary40"
+                android:backgroundTint="?attr/colorPrimary"
                 android:text="Sort Files"
-                android:textColor="@color/material_dynamic_primary99"
-                android:textSize="16dp"
+                android:textColor="?attr/colorOnBackground"
+                android:textSize="20dp"
                 app:icon="@drawable/ic_sort"
-                app:iconTint="@color/material_dynamic_primary99"
+                app:iconSize="24dp"
+                app:iconTint="?attr/colorOnBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:rippleColor="@color/material_dynamic_primary30" />
+                app:rippleColor="?attr/colorPrimaryContainer" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="seed">#006A6A</color>
+    <!-- Light Theme -->
+    <color name="md_theme_light_primary">@color/material_dynamic_primary40</color>
+    <color name="md_theme_light_onPrimary">@color/material_dynamic_primary80</color>
+    <color name="md_theme_light_surface">@color/material_dynamic_neutral99</color>
+    <color name="md_theme_light_background">@color/material_dynamic_neutral99</color>
+
+    <!-- Dark Theme -->
+    <color name="md_theme_dark_primary">@color/material_dynamic_primary80</color>
+    <color name="md_theme_dark_onPrimary">@color/material_dynamic_primary20</color>
+    <color name="md_theme_dark_surface">@color/material_dynamic_neutral10</color>
+    <color name="md_theme_dark_background">@color/material_dynamic_neutral10</color>
 </resources>

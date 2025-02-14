@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.YourApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/material_dynamic_primary90</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/material_dynamic_primary99</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
-    </style>
+<resources>
+    <style name="Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Status bar and Navigation bar -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
 
-    <style name="Theme.MyApplication" parent="Theme.YourApp" />
+        <!-- Color scheme -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+        <item name="colorSurface">@color/md_theme_light_surface</item>
+        <item name="colorOnBackground">@color/md_theme_light_background</item>
+    </style>
 </resources>
