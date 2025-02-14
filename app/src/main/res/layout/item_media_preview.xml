@@ -34,7 +34,7 @@
             android:layout_margin="4dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_close"
-            android:tint="?attr/colorError"/>
+            android:tint="?attr/colorOnPrimaryContainer"/>
 
     </FrameLayout>
 
