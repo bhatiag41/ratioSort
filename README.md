@@ -10,7 +10,10 @@ Ratio Sort is an Android application that automatically sorts photos and videos 
 - 🚀 **Optimized Performance** – Lightweight and fast sorting process.
 
 ## Screenshots
-_(Add screenshots here)_
+![WhatsApp Image 2025-02-15 at 14 08 27_4c9fe37b](https://github.com/user-attachments/assets/c6fb77f3-a249-4b11-b294-298202e582cc)
+![WhatsApp Image 2025-02-15 at 14 08 20_1905cd64](https://github.com/user-attachments/assets/47d06d54-5685-4f6b-98b5-274aa9f8931e)
+
+
 
 ## Installation
 1. Download the latest APK from the [Releases](https://github.com/bhatiag41/ratiosort/releases) section.
