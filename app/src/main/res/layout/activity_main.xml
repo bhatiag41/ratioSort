@@ -15,7 +15,8 @@
         android:background="@android:color/transparent"
         android:elevation="0dp"
         android:minHeight="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-29dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,6 +28,25 @@
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="13dp" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/coffeeButton"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="#00000000"
+            android:contentDescription="@string/coffee"
+            android:onClick="openCoffeePage"
+            app:icon="@drawable/ic_coffee"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="?attr/colorOnPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="?attr/colorOnPrimary"
+            app:strokeColor="?attr/colorOnPrimary"/>
+
     </com.google.android.material.appbar.MaterialToolbar>
 
     <com.google.android.material.card.MaterialCardView
@@ -35,6 +55,7 @@
         android:layout_marginTop="80dp"
         app:cardBackgroundColor="?attr/colorSurface"
         app:cardElevation="0dp"
+        app:strokeWidth="0dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.App.TopRoundedCorners"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -49,15 +70,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
                 android:text="Select Media Files"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 app:icon="@drawable/ic_add_photo_alternate"
                 app:iconTint="?attr/colorPrimary"
-                app:strokeColor="?attr/colorPrimary"
-                app:rippleColor="?attr/colorPrimaryContainer"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/selectFolderBtn"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="?attr/colorPrimaryContainer"
+                app:strokeColor="?attr/colorPrimary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/selectFolderBtn"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:icon="@drawable/baseline_drive_folder_upload_24"
+                app:iconTint="?attr/colorPrimary"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:rippleColor="?attr/colorPrimaryContainer"
+                app:strokeColor="?attr/colorPrimary" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mediaPreviewGrid"

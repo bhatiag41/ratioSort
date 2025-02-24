@@ -13,29 +13,27 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
-
+import android.provider.DocumentsContract;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-
+import androidx.documentfile.provider.DocumentFile;
 import java.io.InputStream;
 import java.io.OutputStream;
-
 import java.util.ArrayList;
-
 import java.util.List;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Build;
 import java.io.IOException;
 
-
 public class MainActivity extends AppCompatActivity {
     private static final int PICK_IMAGES_REQUEST = 1;
+    private static final int PICK_FOLDER_REQUEST = 2;
     private static final int PERMISSION_REQUEST_CODE = 123;
     private List<Uri> selectedImages = new ArrayList<>();
     private TextView statusText;
@@ -46,27 +44,16 @@ public class MainActivity extends AppCompatActivity {
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Intent data = result.getData();
-                    
-                    // Create temporary list for new selections
-                    List<Uri> newSelections = new ArrayList<>();
-                    
-                    if (data.getClipData() != null) {
-                        int count = data.getClipData().getItemCount();
-                        for (int i = 0; i < count; i++) {
-                            Uri uri = data.getClipData().getItemAt(i).getUri();
-                            newSelections.add(uri);
-                        }
-                    } else if (data.getData() != null) {
-                        newSelections.add(data.getData());
-                    }
-                    
-                    // Add new selections to existing list
-                    selectedImages.addAll(newSelections);
-                    
-                    // Update UI
-                    statusText.setText(selectedImages.size() + " files selected");
-                    mediaAdapter.notifyDataSetChanged();
+                    handleMediaSelection(result.getData());
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<Intent> folderPicker = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    handleFolderSelection(result.getData().getData());
                 }
             }
     );
@@ -77,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button selectBtn = findViewById(R.id.selectMediaBtn);
+        Button folderBtn = findViewById(R.id.selectFolderBtn);
         Button sortBtn = findViewById(R.id.sortButton);
         statusText = findViewById(R.id.statusText);
         mediaPreviewGrid = findViewById(R.id.mediaPreviewGrid);
@@ -87,9 +75,13 @@ public class MainActivity extends AppCompatActivity {
         mediaPreviewGrid.setAdapter(mediaAdapter);
 
         selectBtn.setOnClickListener(v -> openMediaSelector());
+        folderBtn.setOnClickListener(v -> openFolderSelector());
         sortBtn.setOnClickListener(v -> sortSelectedMedia());
     }
-
+    public void openCoffeePage(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.buymeacoffee.com/gauravbhatiaofficial")); // Replace with your actual URL
+        startActivity(browserIntent);
+    }
     private void openMediaSelector() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -97,6 +89,56 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(Intent.EXTRA_MIME_TYPES, new String[]{"image/*", "video/*"});
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         mediaPicker.launch(intent);
+    }
+
+    private void openFolderSelector() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        folderPicker.launch(intent);
+    }
+
+    private void handleMediaSelection(Intent data) {
+        List<Uri> newSelections = new ArrayList<>();
+
+        if (data.getClipData() != null) {
+            int count = data.getClipData().getItemCount();
+            for (int i = 0; i < count; i++) {
+                Uri uri = data.getClipData().getItemAt(i).getUri();
+                newSelections.add(uri);
+            }
+        } else if (data.getData() != null) {
+            newSelections.add(data.getData());
+        }
+
+        selectedImages.addAll(newSelections);
+        updateUIAfterSelection();
+    }
+
+    private void handleFolderSelection(Uri folderUri) {
+        DocumentFile folder = DocumentFile.fromTreeUri(this, folderUri);
+        if (folder != null) {
+            processFolder(folder);
+        }
+    }
+
+    private void processFolder(DocumentFile folder) {
+        if (folder != null && folder.exists()) {
+            for (DocumentFile file : folder.listFiles()) {
+                if (!file.isDirectory()) {
+                    String mimeType = file.getType();
+                    if (mimeType != null && (mimeType.startsWith("image/") || mimeType.startsWith("video/"))) {
+                        selectedImages.add(file.getUri());
+                    }
+                } else {
+                    processFolder(file); // Recursively process subfolders
+                }
+            }
+            updateUIAfterSelection();
+        }
+    }
+
+    private void updateUIAfterSelection() {
+        statusText.setText(selectedImages.size() + " files selected");
+        mediaAdapter.notifyDataSetChanged();
     }
 
     private void sortSelectedMedia() {
@@ -123,11 +165,11 @@ public class MainActivity extends AppCompatActivity {
                         String widthStr = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH);
                         String heightStr = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT);
                         String rotationStr = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_ROTATION);
-                        
+
                         if (widthStr != null && heightStr != null) {
                             width = Integer.parseInt(widthStr);
                             height = Integer.parseInt(heightStr);
-                            
+
                             if (rotationStr != null) {
                                 int rotation = Integer.parseInt(rotationStr);
                                 if (rotation == 90 || rotation == 270) {
@@ -191,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        
+
         Toast.makeText(this, "Media sorted successfully", Toast.LENGTH_SHORT).show();
         selectedImages.clear();
         mediaAdapter.updateMedia(selectedImages);

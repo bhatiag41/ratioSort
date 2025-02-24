@@ -3,8 +3,8 @@
     <style name="Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Status bar and Navigation bar -->
         <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">#00000000</item>
-        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/notmaterial_white</item>
+        <item name="android:windowLightStatusBar">false</item>
         <!-- Color scheme -->
         <item name="colorPrimary">@color/notmaterial_purple</item>
         <item name="colorOnPrimary">@color/notmaterial_lightpurple</item>
