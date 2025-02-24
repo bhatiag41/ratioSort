@@ -29,7 +29,8 @@ Ratio Sort is an Android application that automatically sorts photos and videos 
 - **Language:** Java
 - **Minimum Android Version:** 7.0 (Nougat)
 - **UI Framework:** Material Design Components
-
+## Support
+<script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="gauravbhatiaofficial" data-color="#FFDD00" data-emoji="☕"  data-font="Poppins" data-text="I love Tea" data-outline-color="#000000" data-font-color="#000000" data-coffee-color="#ffffff" ></script>
 ## Contributing
 Contributions are welcome! Feel free to open an issue or submit a pull request.
 
